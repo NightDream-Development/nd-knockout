@@ -16,7 +16,7 @@ CreateThread(function()
                     if GetEntityHealth(ped) < 145 then
                         SetPlayerInvincible(ped, false)
                         -- Position taken by your Ped
-                        SetPedToRagdoll(ped, 1000, 1000, 0, 0, 0, 0)
+                                       TriggerEvent('animations:client:EmoteCommandStart', {"passout2"})  
                         -- Time to wait
                         wait = 60
                         QBCore.Functions.Progressbar("knocked-out", "Eszméletlen...", 45000, false, false, {
@@ -24,7 +24,6 @@ CreateThread(function()
                                 disableCarMovement = true,
                                 disableMouse = false,
                                 disableCombat = true
-                                animation = "missarmenian2@corpse_search_exit_ped",
                             },
                             {},
                             {},
@@ -76,5 +75,3 @@ CreateThread(function()
         end
     end
 )
-
-
