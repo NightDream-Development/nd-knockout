@@ -73,7 +73,6 @@ CreateThread(function()
             end
             -- Ha halott lessz minden fasza legyen!
             if PlayerData['isdead']then
-                 -- Remove Konockout effect
                  SetTimecycleModifier("")
                  ExecuteCommand('e c')
                  SetTransitionTimecycleModifier("")
