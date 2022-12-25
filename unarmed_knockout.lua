@@ -15,7 +15,7 @@ CreateThread(function()
                     -- életerő ha kiütnek
                     if GetEntityHealth(ped) < 145 then
                         SetPlayerInvincible(ped, false)
-                        -- Position taken by your Ped
+
                                        TriggerEvent('animations:client:EmoteCommandStart', {"passout2"})  
                         -- Time to wait
                         wait = 60
