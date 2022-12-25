@@ -10,9 +10,9 @@ CreateThread(function()
             local ped = PlayerPedId()
             PlayerData = QBCore.Functions.GetPlayerData()
             if IsPedInMeleeCombat(ped) then
-                --  {UNARMED ONLY}
+                --  csak kézzel üthet
                 if (HasPedBeenDamagedByWeapon(ped, GetHashKey("WEAPON_UNARMED"), 0)) then
-                    -- Health to be knocked out
+                    -- életerő ha kiütnek
                     if GetEntityHealth(ped) < 145 then
                         SetPlayerInvincible(ped, false)
                         -- Position taken by your Ped
@@ -37,13 +37,13 @@ CreateThread(function()
                             end,
                             "fa-solid fa-face-dizzy")            
                       knockedOut = true
-                        -- Health after knockout preferably dont make it more than 150 (50 %) because people will abuse with it {No need to go to hospital or so}
+                        -- Az egészség a kiütés után lehetőleg ne legyen 150-nél (50%), mert az emberek visszaélnek vele {Nem kell kórházba menni}
                         SetEntityHealth(ped, 140)
                     end
                 end
             end
             if knockedOut == true then
-                --Your ped is able to die
+                --A játékos megbír halni
                 local ped = PlayerPedId()
                 SetPlayerInvincible(PlayerPedId(), false)
                 DisablePlayerFiring(PlayerPedId(), true)
@@ -54,30 +54,24 @@ CreateThread(function()
                         Wait(500)
                     end
                 end)
-                -- Blur Cam
-                --SetTimecycleModifier("hud_def_blur")
                 if wait >= 0 then
                     count = count - 1
                     if count == 0 then
                         count = 60
                         wait = wait - 1
-                        -- in case bark
+                        -- ha elbaszódna
                         if GetEntityHealth(PlayerPedId()) <= 50 then
-                            -- Ped healing
+                            -- Ped gyógyítása
                             SetEntityHealth(PlayerPedId(), GetEntityHealth(ped) + 2)
                         end
                     end
                 else
-                    -- Remove Blue cam
-                   -- SetTimecycleModifier("")
-                    --SetTransitionTimecycleModifier("")
-                    -- Ped Able to die again
                     ExecuteCommand('e c')
                     SetPlayerInvincible(PlayerPedId(), false)
                     knockedOut = false
                 end
             end
-            -- Simple clear Knockout if Dead
+            -- Ha halott lessz minden fasza legyen!
             if PlayerData['isdead']then
                  -- Remove Konockout effect
                  SetTimecycleModifier("")
