@@ -50,7 +50,7 @@ CreateThread(function()
                 ResetPedRagdollTimer(PlayerPedId())
                 CreateThread(function()
                     while knockedOut == true do
-                        ExecuteCommand('e passout')
+                       TriggerEvent('animations:client:EmoteCommandStart', {"passout2"})   
                         Wait(500)
                     end
                 end)
@@ -66,7 +66,7 @@ CreateThread(function()
                         end
                     end
                 else
-                    ExecuteCommand('e c')
+                    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
                     SetPlayerInvincible(PlayerPedId(), false)
                     knockedOut = false
                 end
@@ -74,7 +74,7 @@ CreateThread(function()
             -- Ha halott lessz minden fasza legyen!
             if PlayerData['isdead']then
                  SetTimecycleModifier("")
-                 ExecuteCommand('e c')
+                 TriggerEvent('animations:client:EmoteCommandStart', {"c"})
                  SetTransitionTimecycleModifier("")
                  knockedOut = false
              end
