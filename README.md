@@ -6,4 +6,4 @@ Egy kiütés rendszer qbcore-hoz!
 Dpemotes (Lehetőleg azt használd amit kapsz qbcore-hoz!)
 
 
-[[/https://i.imgur.com/BCMgi6A.png|ALT TEXT]]
+[/https://i.imgur.com/BCMgi6A.png]
