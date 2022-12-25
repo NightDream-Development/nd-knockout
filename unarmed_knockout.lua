@@ -24,6 +24,7 @@ CreateThread(function()
                                 disableCarMovement = true,
                                 disableMouse = false,
                                 disableCombat = true
+                                animation = "missarmenian2@corpse_search_exit_ped",
                             },
                             {},
                             {},
@@ -48,12 +49,6 @@ CreateThread(function()
                 SetPlayerInvincible(PlayerPedId(), false)
                 DisablePlayerFiring(PlayerPedId(), true)
                 ResetPedRagdollTimer(PlayerPedId())
-                CreateThread(function()
-                    while knockedOut == true do
-                       TriggerEvent('animations:client:EmoteCommandStart', {"passout2"})   
-                        Wait(500)
-                    end
-                end)
                 if wait >= 0 then
                     count = count - 1
                     if count == 0 then
