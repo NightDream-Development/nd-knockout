@@ -1,10 +1,13 @@
 fx_version 'cerulean'
 game 'gta5'
-
+lua54 'yes'
 version '1.0.0'
 
 
 
 client_scripts {
-	'unarmed_knockout.lua',
+	'client.lua',
+	'Config.lua',
 } 
+
+shared_scripts {"@ox_lib/init.lua"}

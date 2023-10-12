@@ -1,9 +1,13 @@
 # nd-knockout
-     Egy kiütés rendszer qbcore-hoz!
+     knockout script for qb-core soon for qbox
 
 
 # Dependecy
-    Dpemotes (Lehetőleg azt használd amit kapsz qbcore-hoz!)
+    Dpemotes (Config true or false )
+    scully_emotemenu (Config true or false )
+
+    # Preview
+    
 ![nd-knockoutimage](https://i.imgur.com/BCMgi6A.png)
 
 
