@@ -6,5 +6,6 @@ version '1.0.0'
 
 
 client_scripts {
-	'unarmed_knockout.lua',
+	'client.lua',
+	'Config.lua',
 } 
