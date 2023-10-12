@@ -1,5 +1,6 @@
 # nd-knockout
-     knockout script for qbox
+     knockout script for qbcore
+     qbox  knockout script = github link
 
 
 # Dependecy
