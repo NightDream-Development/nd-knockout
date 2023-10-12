@@ -71,12 +71,20 @@ CreateThread(function()
             if Config.debug then
                 lib.print.debug("Progressbar Done")
                 SetTimecycleModifier("")
-                TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+                if Config.scully then
+                    exports.scully_emotemenu:cancelEmote()
+                else
+                    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+                end
                 SetTransitionTimecycleModifier("")
                 knockedOut = false
             else
                 SetTimecycleModifier("")
-                TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+               if Config.scully then
+                    exports.scully_emotemenu:cancelEmote()
+                else
+                    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+                end
                 SetTransitionTimecycleModifier("")
                 knockedOut = false
             end
