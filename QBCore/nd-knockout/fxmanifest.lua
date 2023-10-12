@@ -7,7 +7,15 @@ version '1.0.0'
 
 client_scripts {
 	'client.lua',
-	'Config.lua',
+  'Config.lua',
+	
 } 
 
-shared_scripts {"@ox_lib/init.lua"}
+
+
+shared_script {
+  '@ox_lib/init.lua',
+  'Config.lua',
+}
+
+
