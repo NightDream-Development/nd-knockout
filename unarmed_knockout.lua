@@ -1,23 +1,25 @@
+
+
+
 local QBCore = exports["qb-core"]:GetCoreObject()
 local knockedOut = false
 local wait = 15
 local count = 60
-local isdead = false
+
 
 CreateThread(function()
         while true do
             Wait(1000)
-            local ped = PlayerPedId()
             PlayerData = QBCore.Functions.GetPlayerData()
-            if IsPedInMeleeCombat(ped) then
-                --  csak kézzel üthet
-                if (HasPedBeenDamagedByWeapon(ped, GetHashKey("WEAPON_UNARMED"), 0)) then
-                    -- életerő ha kiütnek
-                    if GetEntityHealth(ped) < 145 then
-                        SetPlayerInvincible(ped, false)
+            if IsPedInMeleeCombat(cache.ped) then
+               
+                if (HasPedBeenDamagedByWeapon(cache.ped, GetHashKey("WEAPON_UNARMED"), 0)) then
+                    
+                    if GetEntityHealth(cache.ped) < 145 then
+                        SetPlayerInvincible(cache.ped, false)
 
-                                       TriggerEvent('animations:client:EmoteCommandStart', {"passout2"})  
-                        -- Time to wait
+                    TriggerEvent('animations:client:EmoteCommandStart', {"passout2"})  
+                      
                         wait = 60
                         QBCore.Functions.Progressbar("knocked-out", "Eszméletlen...", 45000, false, false, {
                                 disableMovement = true,
@@ -29,49 +31,63 @@ CreateThread(function()
                             {},
                             {},
                             function()
-                                -- Done
+                             
+                                if Nd.debug then
+                                    lib.print.debug("Progressbar Done")
+                                    ExecuteCommand('e c')
+                                QBCore.Functions.Notify("Felkeltél!", "success", 5000)
+                                  else
                                 ExecuteCommand('e c')
                                 QBCore.Functions.Notify("Felkeltél!", "success", 5000)
+                                  end
                             end,
                             function()
                             end,
                             "fa-solid fa-face-dizzy")            
                       knockedOut = true
-                        -- Az egészség a kiütés után lehetőleg ne legyen 150-nél (50%), mert az emberek visszaélnek vele {Nem kell kórházba menni}
-                        SetEntityHealth(ped, 140)
+                      
+                        SetEntityHealth(cache.ped, 140)
+                      
                     end
                 end
             end
             if knockedOut == true then
-                --A játékos megbír halni
-                local ped = PlayerPedId()
-                SetPlayerInvincible(PlayerPedId(), false)
-                DisablePlayerFiring(PlayerPedId(), true)
-                ResetPedRagdollTimer(PlayerPedId())
+            
+                SetPlayerInvincible(cache.ped, false)
+                DisablePlayerFiring(cache.ped, true)
+                ResetPedRagdollTimer(cache.ped)
                 if wait >= 0 then
                     count = count - 1
                     if count == 0 then
                         count = 60
                         wait = wait - 1
-                        -- ha elbaszódna
-                        if GetEntityHealth(PlayerPedId()) <= 50 then
-                            -- Ped gyógyítása
-                            SetEntityHealth(PlayerPedId(), GetEntityHealth(ped) + 2)
+                      
+                        if GetEntityHealth(cache.ped) <= 50 then
+                          
+                            SetEntityHealth(cache.ped, GetEntityHealth(cache.ped) + 2)
                         end
                     end
                 else
                     TriggerEvent('animations:client:EmoteCommandStart', {"c"})
-                    SetPlayerInvincible(PlayerPedId(), false)
+                    SetPlayerInvincible(cache.ped, false)
                     knockedOut = false
                 end
             end
-            -- Ha halott lessz minden fasza legyen!
+         
             if PlayerData['isdead']then
+                if Nd.debug then
+                    lib.print.debug("Progressbar Done")
+                    SetTimecycleModifier("")
+                    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+                    SetTransitionTimecycleModifier("")
+                    knockedOut = false
+                  else
                  SetTimecycleModifier("")
                  TriggerEvent('animations:client:EmoteCommandStart', {"c"})
                  SetTransitionTimecycleModifier("")
                  knockedOut = false
              end
+            end
         end
     end
 )
