@@ -74,7 +74,7 @@ CreateThread(function()
 
         if exports.qbx_medical:isDead() then
             if Config.debug then
-                lib.print.debug("Progressbar Done")
+                lib.print.debug("Player dead?")
             end
             SetTimecycleModifier("")
             WakeUpPlayer()
