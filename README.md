@@ -1,5 +1,5 @@
 # nd-knockout
-     knockout script for qb-core soon for qbox
+     knockout script for qbox
 
 
 # Dependecy
